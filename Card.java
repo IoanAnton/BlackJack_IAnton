@@ -6,7 +6,7 @@ public class Card{
     public Card (String number, String suit){
         setNumber(number);
         setSuit(suit);
-        setValue(number);
+        setValue(getNumber());
     }    
     
     public String getNumber(){
@@ -19,13 +19,17 @@ public class Card{
         return value;
     }
     
+    //the special cards are treated individually to make sure that they have the coresponding value
     private void setValue(String number){
-        if ( number.equals("A") || number.equals("J") || number.equals("Q") || number.equals("K") ) {
+        if ( number.equals("J") || number.equals("Q") || number.equals("K") ) {
             value = 10;
+        }else if ( number.equals("A") ) {
+            value = 11;
         }else{
             value = Integer.parseInt(number);  
         }
     }
+    //initialisation of the suit variables as it is called from deck constructor
     private void setSuit(String suit){
         switch ( suit ){
             case "1" : {
@@ -66,16 +70,10 @@ public class Card{
             }
             default :{
                 this.number = number;
+                break;
             }
         }
-    }
-    
-    public void playerOverrideValue(int value){
-        if ( number.equals("A") ){
-            this.value = value;
-        }           
-    }
-    
+    }      
     
     @Override
     public String toString(){

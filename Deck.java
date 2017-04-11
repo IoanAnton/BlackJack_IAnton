@@ -1,8 +1,8 @@
 import java.util.*;
-import java.util.concurrent.ThreadLocalRandom;
+
 public class Deck
 {
-    private Random randomGenerator;
+    // Deck is a singleton pattern implementation
     List<Card> list;      
     private Deck(){
         this.list = new ArrayList<>();
@@ -14,6 +14,7 @@ public class Deck
         return SingletonHolder.instance;
     }    
     
+    //deck creation with exception to make sure that it doesn't create more than 52 cards
     public void createNewDeck() throws TooManyCardsException{
          for (int i=1; i<=4; i++){
             for (int j=2;j<=14; j++) {
@@ -25,15 +26,18 @@ public class Deck
             }      
         }
     }
+    //utility method to print all cards
     public void showDeck (){
         list.forEach(System.out::println);
     }
+    //method utilized for removing the card from the deck with the index specified
     public void removePick(int index){
     
         if ( list != null && list.size() != 0){               
             list.remove(index);         
         }
     }
+    //method utilized for picking the card from the deck with the index specified
     public Card pickCard(int index){
     
         if ( list != null && list.size() != 0){               
